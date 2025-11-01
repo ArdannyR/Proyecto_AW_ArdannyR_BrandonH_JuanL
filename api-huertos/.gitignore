@@ -1,0 +1,11 @@
+# Ignorar dependencias en cualquier carpeta
+node_modules/
+
+# Ignorar archivos de variables de entorno en cualquier carpeta
+.env
+
+# Logs
+npm-debug.log
+
+# Archivos de build (para el frontend)
+dist/
