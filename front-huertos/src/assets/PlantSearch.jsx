@@ -7,12 +7,19 @@ function PlantSearch() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-
-    const API_KEY = "sk-N5sO6910bc312749c13382";
+    // 1. Leemos la API key desde las variables de entorno de Vite
+    const API_KEY = import.meta.env.VITE_PERENUAL_API_KEY;
 
     const searchPlants = async (e) => {
     e.preventDefault();
     if (!searchTerm) return;
+
+    // 2. Verificamos que la API key exista
+    if (!API_KEY) {
+        setError("API key de Perenual no encontrada. Asegúrate de añadirla a tu archivo .env");
+        setLoading(false);
+        return;
+    }
 
     setLoading(true);
     setError(null);
@@ -65,7 +72,7 @@ function PlantSearch() {
           watering: "Frequent",
           default_image: {
             original_url:
-              "https://perenual.com/storage/species_image/1_abies_alba/og/1536px-Abies_alba_SkalitC3A9.jpg",
+              "httpshttps://perenual.com/storage/species_image/1_abies_alba/og/1536px-Abies_alba_SkalitC3A9.jpg",
           }, // URL de ejemplo real de Perenual
         },
         {
@@ -85,7 +92,7 @@ function PlantSearch() {
           sunlight: ["Full sun"],
           default_image: {
             original_url:
-              "https://perenual.com/storage/species_image/324_rosa_spp/og/Rosa_spp._1.jpg",
+              "httpshttps://perenual.com/storage/species_image/324_rosa_spp/og/Rosa_spp._1.jpg",
           },
         },
       ]);
@@ -213,4 +220,8 @@ function PlantSearch() {
   );
 }
 
+<<<<<<< HEAD
 export default PlantSearch; 
+=======
+export default PlantSearch;
+>>>>>>> 2b0ff4196c3a2905f20d92a8b2f2a4ae0d8f5a13
