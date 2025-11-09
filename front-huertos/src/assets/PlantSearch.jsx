@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Leaf, Search, Droplets, Sun, Sprout } from "lucide-react"; // Asegúrate de que ImageOff no se use si no es necesario
+import { Leaf, Search, Droplets, Sun, Sprout } from "lucide-react"; 
 
 function PlantSearch() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -34,7 +34,7 @@ function PlantSearch() {
         const data = await response.json();
 
       // La API de Perenual en su plan gratuito a veces devuelve mensajes de upgrade en lugar de datos.
-      // Vamos a filtrarlos o manejarlos.
+      // Filtrarlos o manejarlos.
         const filteredPlants = (data.data || []).map((plant) => ({
         ...plant,
         // Filtramos mensajes de upgrade en watering y sunlight
@@ -150,8 +150,7 @@ function PlantSearch() {
                         fallbackIcon.className = "fallback-icon";
                         parent.appendChild(fallbackIcon);
                       }
-                      // Renderizar un nuevo componente de React o un elemento SVG/Lucide
-                      // Esto es más complejo para hacer con vanilla JS aquí, se haría con estado
+                      
                       // Por ahora, solo nos aseguramos de que no haya una imagen rota
                     }}
                   />
@@ -214,4 +213,4 @@ function PlantSearch() {
   );
 }
 
-export default PlantSearch; // Asegúrate de exportar PlantSearch si lo tienes en un archivo separado
+export default PlantSearch; 
