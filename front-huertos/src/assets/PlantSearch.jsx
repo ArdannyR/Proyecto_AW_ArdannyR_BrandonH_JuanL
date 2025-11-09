@@ -220,8 +220,4 @@ function PlantSearch() {
   );
 }
 
-<<<<<<< HEAD
 export default PlantSearch; 
-=======
-export default PlantSearch;
->>>>>>> 2b0ff4196c3a2905f20d92a8b2f2a4ae0d8f5a13

@@ -359,23 +359,6 @@ function PlantSearch() {
   );
 }
 
-// --- COMPONENTE 3: MI HUERTO (Futura API Privada) ---
-function MyGarden() {
-  return (
-    <div className="flex-1 p-4 md:p-6 flex flex-col items-center justify-center text-center">
-      <div className="bg-green-50 p-8 rounded-full mb-6">
-        <Sprout size={64} className="text-green-600" />
-      </div>
-      <h2 className="text-2xl font-bold text-gray-800 mb-2">Mi Huerto Personal</h2>
-      <p className="text-gray-500 max-w-md">
-        Aquí es donde conectaremos tu <strong>API Privada</strong>. Las plantas que añadas desde el buscador aparecerán listadas aquí.
-      </p>
-      <div className="mt-8 p-4 bg-gray-100 rounded-xl text-sm font-mono text-gray-600 border border-gray-200">
-        Esperando conexión a: GET localhost:3000/mi-huerto...
-      </div>
-    </div>
-  );
-}
 
 // --- COMPONENTE PRINCIPAL: APP ---
 function App() {
@@ -412,12 +395,7 @@ function App() {
                     isActive={currentView === 'search'} 
                     onClick={() => setCurrentView('search')} 
                 />
-                <NavButton 
-                    icon={<Sprout size={18} />} 
-                    label="Mi Huerto" 
-                    isActive={currentView === 'garden'} 
-                    onClick={() => setCurrentView('garden')} 
-                />
+                
             </nav>
         </div>
       </header>
