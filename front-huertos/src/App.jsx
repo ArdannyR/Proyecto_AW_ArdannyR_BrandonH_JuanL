@@ -108,12 +108,7 @@ function App() {
                     isActive={currentView === 'search'} 
                     onClick={() => setCurrentView('search')} 
                 />
-                <NavButton 
-                    icon={<Sprout size={18} />} 
-                    label="Mi Huerto" 
-                    isActive={currentView === 'garden'} 
-                    onClick={() => setCurrentView('garden')} 
-                />
+              
             </nav>
         </div>
       </header>
