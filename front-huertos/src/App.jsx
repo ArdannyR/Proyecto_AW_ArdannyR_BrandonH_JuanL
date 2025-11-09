@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // <-- Se mantiene useEffect
 import { Leaf, Home, Sprout, Search, Droplets, Thermometer, Wind, Sun, FlaskConical, ImageOff } from 'lucide-react';
 
-// --- COMPONENTE 1: DASHBOARD ---
+
 // --- COMPONENTE 1: DASHBOARD ---
 function Dashboard() {
   // Estado para el país seleccionado (default: México)
@@ -377,7 +377,7 @@ function App() {
                 <Leaf className="text-white" size={20} />
             </div>
             <h1 className="text-lg font-bold text-gray-900 leading-tight">
-                Greenhouse A1
+                Panel de control
             </h1>
             </div>
 
