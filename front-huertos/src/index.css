@@ -3,9 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 2. Aquí movemos el estilo global del <body> 
-  que estaba en el <style> del HTML original 
-*/
+
 body {
   min-height: max(884px, 100dvh);
 }
