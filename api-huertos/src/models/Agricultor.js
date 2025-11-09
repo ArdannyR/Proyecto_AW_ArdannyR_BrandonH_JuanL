@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 
 const agricultorSchema = mongoose.Schema(
   {
-    // Campos que tendrá cada documento de Agricultor
+    // ... (tus campos existentes: nombre, email, password, token, confirmado)
     nombre: {
       type: String,
       required: true, 
@@ -11,20 +11,20 @@ const agricultorSchema = mongoose.Schema(
     },
     email: {
       type: String,
-      required: true, // El email es obligatorio
-      unique: true, // No puede haber dos emails iguales
+      required: true, 
+      unique: true, 
       trim: true,
     },
     password: {
       type: String,
-      required: true, // El password es obligatorio
+      required: true, 
     },
     token: {
-      type: String, // Se usará para confirmar la cuenta y resetear password
+      type: String, 
     },
     confirmado: {
       type: Boolean,
-      default: false, // La cuenta empieza sin confirmar
+      default: false, 
     },
   },
   {
@@ -32,15 +32,20 @@ const agricultorSchema = mongoose.Schema(
   }
 );
 
+// Middleware de pre-guardado para hashear password (Este ya lo tenías)
 agricultorSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
   }
-  
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
+
+// Método para comprobar el password del formulario vs el de la BD
+agricultorSchema.methods.comprobarPassword = async function (passwordFormulario) {
+  return await bcrypt.compare(passwordFormulario, this.password);
+};
 
 const Agricultor = mongoose.model('Agricultor', agricultorSchema);
 

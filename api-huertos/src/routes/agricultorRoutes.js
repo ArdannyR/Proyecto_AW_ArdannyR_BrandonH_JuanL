@@ -1,19 +1,22 @@
 import express from 'express';
-import { registrar } from '../controllers/agricultorController.js';
+import { 
+  registrar, 
+  confirmarCuenta, 
+  autenticar, 
+  perfil 
+} from '../controllers/agricultorController.js';
+import checkAuth from '../middleware/authMiddleware.js';
 
-// Configura el enrutador de Express
 const router = express.Router();
 
-// --- Definición de Endpoints ---
+// --- Endpoints ---
 
-// Cuando se haga un POST a la ruta raíz ('/'), se ejecutará la función 'registrar'
-// Esta ruta raíz será luego prefijada con '/api/agricultores' en index.js
+// Área Pública
+router.post('/', registrar);                      // (Ya lo tenías)
+router.get('/confirmar/:token', confirmarCuenta); // <-- (Paso 2.3) Ruta de confirmación
+router.post('/login', autenticar);                // <-- (Paso 1.3) Ruta de Login
 
-// Endpoint para el registro
-router.post('/', registrar); 
+// Área Privada (Requiere autenticación)
+router.get('/perfil', checkAuth, perfil);         // <-- (Paso 3.3) Ruta de Perfil
 
-// (Aquí añadiremos luego las otras rutas: /login, /confirmar, /perfil, etc.)
-
-
-// Exporta el router para usarlo en el archivo principal
 export default router;
