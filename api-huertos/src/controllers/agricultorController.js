@@ -1,5 +1,4 @@
 import Agricultor from '../models/Agricultor.js';
-// Importamos los helpers que creamos
 import { generarId, generarJWT } from '../helpers/generarToken.js';
 
 const registrar = async (req, res) => {
@@ -108,9 +107,107 @@ const perfil = (req, res) => {
   res.json(agricultor);
 };
 
+const olvidePassword = async (req, res) => {
+  const { email } = req.body;
+
+  // 1. Comprobar si el usuario existe
+  const usuario = await Agricultor.findOne({ email });
+  if (!usuario) {
+    const error = new Error('El usuario no existe.');
+    return res.status(404).json({ msg: error.message });
+  }
+
+  // 2. Comprobar que esté confirmado
+  if (!usuario.confirmado) {
+    const error = new Error('La cuenta no ha sido confirmada.');
+    return res.status(403).json({ msg: error.message });
+  }
+
+  try {
+    // 3. Generar y guardar el token y su expiración (1 hora)
+    usuario.token = generarId();
+    usuario.tokenExpires = Date.now() + 3600000; // 1 hora en milisegundos
+    await usuario.save();
+
+    // 4. (Simulación) Enviar el email.
+    // Aquí es donde configurarías un servicio como Nodemailer o SendGrid.
+    console.log('--- SIMULACIÓN DE EMAIL ---');
+    console.log(`Para: ${email}`);
+    console.log('Asunto: Resetea tu contraseña de GreenHouse A1');
+    console.log(`Usa el siguiente token para resetear tu contraseña: ${usuario.token}`);
+    console.log('Este token expira en 1 hora.');
+    console.log('--- FIN SIMULACIÓN ---');
+
+    res.json({ msg: 'Hemos enviado un email con las instrucciones.' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: 'Error en el servidor.' });
+  }
+};
+
+const comprobarToken = async (req, res) => {
+  const { token } = req.params;
+
+  // 1. Buscar al usuario por el token Y verificar que no haya expirado
+  const usuario = await Agricultor.findOne({
+    token,
+    tokenExpires: { $gt: Date.now() }, // $gt = greater than (mayor que)
+  });
+
+  if (!usuario) {
+    const error = new Error('Token no válido o expirado.');
+    return res.status(404).json({ msg: error.message });
+  }
+
+  // 2. Si es válido, respondemos OK.
+  // El frontend usará esta respuesta para mostrar el formulario de nueva contraseña.
+  res.json({ msg: 'Token válido. Introduce tu nueva contraseña.' });
+};
+
+const nuevoPassword = async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body; // El nuevo password
+
+  // 1. Validar que el token sigue siendo válido
+  const usuario = await Agricultor.findOne({
+    token,
+    tokenExpires: { $gt: Date.now() },
+  });
+
+  if (!usuario) {
+    const error = new Error('Token no válido o expirado.');
+    return res.status(404).json({ msg: error.message });
+  }
+
+  // 2. Validar que se envió un password
+  if (!password || password.length < 6) {
+    const error = new Error('El password debe tener al menos 6 caracteres.');
+    return res.status(400).json({ msg: error.message });
+  }
+
+  try {
+    // 3. Guardar el nuevo password.
+    // El 'pre-save' hook de tu modelo Agricultor.js se encargará de hashearlo.
+    usuario.password = password;
+
+    // 4. Limpiar/invalidar el token para que no se reutilice
+    usuario.token = '';
+    usuario.tokenExpires = null;
+
+    await usuario.save();
+    res.json({ msg: 'Contraseña actualizada correctamente.' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: 'Error al actualizar la contraseña.' });
+  }
+};
+
 export { 
   registrar,
   confirmarCuenta, 
   autenticar,      
-  perfil          
+  perfil,
+  olvidePassword,
+  comprobarToken,
+  nuevoPassword        
 };
