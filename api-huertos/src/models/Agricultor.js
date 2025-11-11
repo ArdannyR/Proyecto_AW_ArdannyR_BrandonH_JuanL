@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 
 const agricultorSchema = mongoose.Schema(
   {
-    // ... (tus campos existentes: nombre, email, password, token, confirmado)
     nombre: {
       type: String,
       required: true, 
@@ -22,6 +21,9 @@ const agricultorSchema = mongoose.Schema(
     token: {
       type: String, 
     },
+    tokenExpires: {
+      type: Date
+    },
     confirmado: {
       type: Boolean,
       default: false, 
@@ -32,7 +34,7 @@ const agricultorSchema = mongoose.Schema(
   }
 );
 
-// Middleware de pre-guardado para hashear password (Este ya lo tenías)
+// Middleware de pre-guardado para hashear password
 agricultorSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
@@ -42,7 +44,7 @@ agricultorSchema.pre('save', async function (next) {
   next();
 });
 
-// Método para comprobar el password del formulario vs el de la BD
+// Método para comprobar el password
 agricultorSchema.methods.comprobarPassword = async function (passwordFormulario) {
   return await bcrypt.compare(passwordFormulario, this.password);
 };
