@@ -8,7 +8,7 @@ import { Leaf, Home, Sprout, Search, Droplets, Thermometer, Wind, Sun, FlaskConi
 function LandingPage() {
   const navigate = useNavigate(); // 2. Creamos la función de navegación
 
-  const handleStart = () => navigate('/dashboard'); // 3. Esta función nos llevará a la ruta del dashboard
+  const handleStart = () => navigate('/login'); // 3. Esta función nos llevará a la ruta del login
 
   return (
     <div className="min-h-screen w-full bg-gray-50 text-gray-800 font-sans flex flex-col">
