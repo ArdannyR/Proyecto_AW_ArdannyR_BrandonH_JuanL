@@ -107,7 +107,7 @@ function LandingPage() {
   return (
     <div className="min-h-screen w-full bg-gray-50 text-gray-800 font-sans flex flex-col">
       
-      {/* --- Header (Sin cambios) --- */}
+      {/* --- Header --- */}
       <header className="w-full px-6 py-6 bg-green-400 shadow-lg">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -127,7 +127,7 @@ function LandingPage() {
         </div>
       </header>
 
-      {/* --- HERO SECTION CON 2 COLUMNAS --- */}
+      {/* --- Hero Section --- */}
       <main className="flex-1 w-full">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12 px-6 py-24">
         
@@ -233,7 +233,7 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* --- Nueva Sección de Galería (Sin cambios) --- */}
+      {/* --- Gallery Section --- */}
       <section id="gallery" className="w-full bg-gray-50 py-24 overflow-hidden">
         <div className="max-w-full mx-auto">
           <div className="text-center mb-16 px-6">
@@ -250,7 +250,7 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* --- Footer (Sin cambios) --- */}
+      {/* --- Footer --- */}
       <footer className="w-full bg-gray-900 text-gray-400 py-12 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">

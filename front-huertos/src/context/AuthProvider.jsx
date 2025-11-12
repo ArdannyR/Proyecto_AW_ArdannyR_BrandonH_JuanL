@@ -36,6 +36,7 @@ const AuthProvider = ({ children }) => {
             } catch (error) {
                 setAuth({});
                 localStorage.removeItem('token');
+                error
             }
             setCargando(false);
         }

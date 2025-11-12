@@ -10,7 +10,7 @@ import './index.css';
 import LandingPage from './LandingPage';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage'; // (Probablemente también tengas esta)
-import App from './App';
+import App from './Dashboard';
 import PlantSearch from './assets/PlantSearch';
 import Layout from './Layout'; // El layout que acabamos de crear
 import RutaProtegida from './RutaProtegida'; // (El componente para proteger rutas)
