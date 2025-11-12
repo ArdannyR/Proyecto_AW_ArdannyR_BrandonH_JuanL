@@ -18,7 +18,7 @@ function Layout() {
         <div className="min-h-screen w-full bg-gray-50 font-sans text-gray-800 flex flex-col">
             
             {/* ESTA SERÁ TU ÚNICA CABECERA */}
-            <header className="sticky top-0 bg-white/80 backdrop-blur-md z-10 border-b border-gray-200 px-4 py-3">
+            <header className="sticky top-0 bg-green-400 backdrop-blur-md z-10 border-b border-gray-200 px-4 py-3">
                 <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
                     
                     {/* Título (Panel de control) */}
@@ -49,11 +49,11 @@ function Layout() {
                         </Link>
                     </nav>
 
-                    {/* Botón de Cerrar Sesión (Opcional pero recomendado) */}
+                    {/* Botón de Cerrar Sesión */}
                     <button 
                         onClick={cerrarSesion}
                         title="Cerrar Sesión"
-                        className="p-2.5 rounded-lg text-gray-500 hover:bg-red-100 hover:text-red-600 transition-colors"
+                        className="p-2.5 rounded-lg text-red-600 hover:bg-red-100 hover:text-red-600 transition-colors"
                     >
                         <LogOut size={20} />
                     </button>

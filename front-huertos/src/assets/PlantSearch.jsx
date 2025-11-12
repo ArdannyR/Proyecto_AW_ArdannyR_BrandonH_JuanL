@@ -115,7 +115,7 @@ function PlantSearch() {
             placeholder="Ej. tomato, rose, oak..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all"
+            className="flex-1 p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all"
           />
           <button
             type="submit"
@@ -137,7 +137,7 @@ function PlantSearch() {
           {plants.map((plant) => (
             <div
               key={plant.id}
-              className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex gap-4 hover:border-green-200 transition-all"
+              className="bg-white p-4 rounded-2xl shadow-sm border border-green-400 flex gap-4 hover:border-green-200 transition-all"
             >
               {/* Imagen de la planta */}
               <div className="w-24 h-24 shrink-0 bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center border border-gray-200">

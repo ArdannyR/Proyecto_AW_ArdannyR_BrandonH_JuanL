@@ -98,7 +98,7 @@ function App() {
         {/* Botones de tiempo */}
         <div className="flex gap-2 p-1 overflow-x-auto">
           <button className="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-green-100 text-green-700 px-4 text-sm font-medium">
-            Live
+            En vivo
           </button>
           <button className="h-9 px-4 text-gray-500 hover:bg-gray-100 rounded-full text-sm font-medium transition-colors">24H</button>
           <button className="h-9 px-4 text-gray-500 hover:bg-gray-100 rounded-full text-sm font-medium transition-colors">7D</button>
@@ -129,21 +129,21 @@ function App() {
           
           {/* Tarjetas de Clima (Dinámicas) */}
           <MetricCard 
-            title="Air Temperature" 
+            title="Temperatura del aire" 
             value={`${temp.toFixed(1)}°C`} 
             change={description} // Muestra "nubes dispersas", etc.
             isPositive={true}
             icon={<Thermometer size={20} />} 
           />
           <MetricCard 
-            title="Air Humidity" 
+            title="Humedad del aire" 
             value={`${humidity}%`} 
             change="Exterior" 
             isPositive={true} 
             icon={<Droplets size={20} />} // Icono corregido (era Wind)
           />
           <MetricCard 
-            title="Wind Speed" 
+            title="Velocidad del viento" 
             value={`${windSpeed.toFixed(1)} m/s`} 
             change="Exterior" 
             isPositive={false} 
@@ -151,9 +151,9 @@ function App() {
           />
 
           {/* Tarjetas Estáticas (de tu código) */}
-          <MetricCard title="Soil Moisture" value="62%" change="+1.2%" isPositive={true} icon={<Droplets size={20} className="text-blue-500" />} />
-          <MetricCard title="Light Intensity" value="50k Lux" change="+5.0%" isPositive={true} icon={<Sun size={20} />} />
-          <MetricCard title="Nutrient Levels" value="800 PPM" change="-1.5%" isPositive={false} icon={<FlaskConical size={20} />} />
+          <MetricCard title="Humedad del suelo" value="62%" change="+1.2%" isPositive={true} icon={<Droplets size={20} className="text-blue-500" />} />
+          <MetricCard title="Intensidad lumínica" value="50k Lux" change="+5.0%" isPositive={true} icon={<Sun size={20} />} />
+          <MetricCard title="Nivel de los nutrientes" value="800 PPM" change="-1.5%" isPositive={false} icon={<FlaskConical size={20} />} />
           {/* Quité la de pH para dar espacio a Wind Speed, puedes volver a ponerla si quieres 7 tarjetas */}
         </div>
 
@@ -161,22 +161,33 @@ function App() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between min-h-[250px]">
               <div>
-                <h3 className="text-gray-500 font-medium mb-1">Environmental Trends</h3>
+                <h3 className="text-gray-500 font-medium mb-1">Métricas del entorno</h3>
                 {/* Temperatura de la API (ACTUALIZADO) */}
                 <p className="text-3xl font-bold text-gray-800">{temp.toFixed(1)}°C</p>
               </div>
-              <div className="h-32 bg-green-50 rounded-xl flex items-center justify-center text-green-300 italic">
-                Gráfico de Temperatura
+              <div className="h-32 w-full">
+                <svg viewBox="0 0 200 80" preserveAspectRatio="none" className="w-full h-full">
+                  <defs>
+                    <linearGradient id="tempGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#4ade80" stopOpacity="0.3" />
+                      <stop offset="100%" stopColor="#4ade80" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  {/* Área de gradiente */}
+                  <path d="M0,80 L0,40 L33.3,35 L66.6,25 L99.9,30 L133.2,20 L166.5,28 L199.8,32 L200,80 Z" fill="url(#tempGradient)" />
+                  {/* Línea principal */}
+                  <path d="M0,40 L33.3,35 L66.6,25 L99.9,30 L133.2,20 L166.5,28 L199.8,32" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </div>
           </div>
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between min-h-[250px]">
               <div>
-                <h3 className="text-gray-500 font-medium mb-1">Water Usage</h3>
+                <h3 className="text-gray-500 font-medium mb-1">Consumo de agua</h3>
                 <p className="text-3xl font-bold text-gray-800">32 L <span className="text-sm text-red-500 font-normal">-0.8%</span></p>
               </div>
               <div className="h-32 flex items-end gap-2">
                 {[40, 70, 35, 50, 80, 60, 90].map((h, i) => (
-                    <div key={i} className="bg-blue-100 hover:bg-blue-200 transition-all rounded-t-lg flex-1" style={{ height: `${h}%` }}></div>
+                    <div key={i} className="bg-blue-400 hover:bg-blue-200 transition-all rounded-t-lg flex-1" style={{ height: `${h}%` }}></div>
                 ))}
               </div>
           </div>

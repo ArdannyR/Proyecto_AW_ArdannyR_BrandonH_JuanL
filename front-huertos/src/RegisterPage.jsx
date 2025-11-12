@@ -68,7 +68,7 @@ const RegisterPage = () => {
     const { msg } = alerta;
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
+        <div className="min-h-screen bg-green-400 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
             
             {/* --- Logo Header --- */}
             <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">

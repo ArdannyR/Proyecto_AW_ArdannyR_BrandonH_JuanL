@@ -252,14 +252,19 @@ function LandingPage() {
 
       {/* --- Footer --- */}
       <footer className="w-full bg-gray-900 text-gray-400 py-12 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <Leaf className="text-green-500" size={24} />
-            <span className="text-white font-bold text-lg">Agreenbyte</span>
+        <div className="max-w-6xl mx-auto text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-2">
+              <img src="/agreenbyte-logo.png" alt="Agreenbyte Logo" className="w-6 h-6" />
+              <span className="text-white font-bold text-lg">Agreenbyte</span>
+            </div>
+            <p className="text-sm">
+              © 2025 Juan Lucero, Brandon Huera, Ardanny Romero - Desarrollo de Aplicaciones Web
+            </p>
           </div>
-          <p className="text-sm">
-            © 2025 Juan Lucero, Brandon Huera, Ardanny Romero - Desarrollo de Aplicaciones Web
-          </p>
+          <div className="mt-6 pt-6 border-t border-gray-700/50 text-center text-xs">
+            <p>Icono de la aplicación por <a href="https://www.flaticon.es/iconos-gratis/verde" title="verde iconos" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">ultimatearm - Flaticon</a>.</p>
+          </div>
         </div>
       </footer>
     </div>

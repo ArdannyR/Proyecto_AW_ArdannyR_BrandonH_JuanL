@@ -51,7 +51,7 @@ const LoginPage = () => {
     const { msg } = alerta;
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
+        <div className="min-h-screen bg-green-400 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
             
             {/* --- Logo Header --- */}
             <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
@@ -61,7 +61,7 @@ const LoginPage = () => {
                 <h2 className="text-center text-3xl font-extrabold text-gray-900 tracking-tight">
                     Bienvenido de nuevo
                 </h2>
-                <p className="mt-2 text-center text-sm text-gray-600 max-w">
+                <p className="mt-2 text-center text-sm text-gray-900 max-w">
                     Accede a tu panel de control y monitorea tu huerto inteligente en tiempo real.
                 </p>
             </div>
