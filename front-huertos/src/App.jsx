@@ -31,7 +31,7 @@ function MetricCard({ title, value, change, isPositive, icon }) {
 // ESTE ES TU DASHBOARD (App.jsx)
 function App() {
   // --- INICIO: LÓGICA DEL CLIMA ---
-  const [paisSeleccionado, setPaisSeleccionado] = useState('mx'); 
+  const [paisSeleccionado, setPaisSeleccionado] = useState('ec'); 
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
