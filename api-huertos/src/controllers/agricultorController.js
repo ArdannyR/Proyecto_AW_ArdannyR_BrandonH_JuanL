@@ -1,11 +1,10 @@
 import Agricultor from '../models/Agricultor.js';
 import { generarId, generarJWT } from '../helpers/generarToken.js';
+import emailRegistro from '../helpers/emailRegistro.js';
 
 const registrar = async (req, res) => {
-  // 1. Obtener los datos (esto ya lo tenías)
   const { nombre, email, password } = req.body;
 
-  // 2. Revisar si el email ya está registrado (esto ya lo tenías)
   const existeUsuario = await Agricultor.findOne({ email });
 
   if (existeUsuario) {
@@ -13,33 +12,24 @@ const registrar = async (req, res) => {
     return res.status(400).json({ msg: error.message });
   }
 
-  // 3. Guardar el nuevo agricultor
   try {
     const agricultor = new Agricultor(req.body);
-    
-    // --- MODIFICACIÓN (Paso 2.1) ---
-    // Generar token y asignarlo
     agricultor.token = generarId();
-    
-    const agricultorGuardado = await agricultor.save();
-    
-    // (Aquí iría la lógica para enviar el email de confirmación)
-    // Por ahora, solo mostramos el token en la respuesta para pruebas
-    console.log(`Token de confirmación (para simular email): ${agricultorGuardado.token}`);
+    await agricultor.save();
 
-    // 4. Enviar una respuesta exitosa
-    res.json({ 
-      msg: '¡Usuario registrado! Revisa tu email para confirmar tu cuenta.',
-      // Devolvemos el token para poder probar la confirmación
-      tokenParaPruebas: agricultorGuardado.token 
+    // --- Enviar el email ---
+    emailRegistro({
+      email: agricultor.email,
+      nombre: agricultor.nombre,
+      token: agricultor.token
     });
 
+    res.json({ msg: 'Usuario creado Correctamente, revisa tu email para confirmar tu cuenta' });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: 'Error en el servidor al registrar el usuario.' });
+    res.status(500).json({ msg: 'Error al registrar' });
   }
 };
-
 
 const confirmarCuenta = async (req, res) => {
   // 1. Obtener el token de la URL
